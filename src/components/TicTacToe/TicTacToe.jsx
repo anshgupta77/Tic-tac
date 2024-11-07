@@ -19,11 +19,21 @@ const Tictactoe = () => {
             e.target.innerHTML = `<img src= ${circle}>`;
             data[num] = "o";
             setCount(++count);
+            if(count === 9){
+                setLock(true);
+                setTitle("Game Draw");
+                setDisplay("none");
+            }
         }
         else{
             e.target.innerHTML = `<img src= ${cross}>`;  
             data[num] = "x";
             setCount(++count);
+            if(count === 9){
+                setLock(true);
+                setTitle("Game Draw");
+                setDisplay("none");
+            }
         }
     }
     const checkWin = () =>{
@@ -78,9 +88,11 @@ const Tictactoe = () => {
            {lock ? 
            (<div className="title">
             {title} {" "}
-            {title.includes("1") ? 
-            <img src={circle} />:
-            <img src={cross} />}
+            {title.includes("1") ? (
+                <img src={circle} alt="Player 1" />
+            ) : title.includes("2") ? (
+                <img src={cross} alt="Player 2" />
+            ) : null}
         </div>):   
            (<div className="title">
                 <p>Tic Tac Toe Game</p><span>React</span>
